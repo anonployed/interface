@@ -8,8 +8,9 @@ import { useState } from 'react';
 import { NetAPYTooltip } from 'src/components/infoTooltips/NetAPYTooltip';
 import { getMarketInfoById } from 'src/components/MarketSwitcher';
 import { ROUTES } from 'src/components/primitives/Link';
+import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
 import { PageTitle } from 'src/components/TopInfoPanel/PageTitle';
-import { useModalContext } from 'src/hooks/useModal';
+// import { useModalContext } from 'src/hooks/useModal';
 import { useProtocolDataContext } from 'src/hooks/useProtocolDataContext';
 import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
 import { ERC20TokenType } from 'src/libs/web3-data-provider/Web3Provider';
@@ -40,7 +41,7 @@ export const DashboardTopPanel = () => {
     connected,
   } = useWeb3Context();
   const [open, setOpen] = useState(false);
-  const { openClaimRewards } = useModalContext();
+  // const { openClaimRewards } = useModalContext();
   const trackEvent = useRootStore((store) => store.trackEvent);
   const isMigrateToV3Available = useRootStore((state) => selectIsMigrationAvailable(state));
   const showMigrateButton =
@@ -239,19 +240,31 @@ export const DashboardTopPanel = () => {
                 />
               </Box>
 
-              <Button
-                size="small"
-                onClick={() => openClaimRewards()}
-                sx={{
-                  minWidth: 'unset',
-                  bgcolor: '#3AB0FF',
-                  color: 'white',
-                  ml: { xs: 0, xsm: 2 },
-                }}
-                data-cy={'Dashboard_Claim_Button'}
+              <ContentWithTooltip
+                tooltipContent={
+                  <Typography variant="caption" color="text.secondary" mb={3}>
+                    <Trans>
+                      Rewards claim is undergoing maintenance and upgrades. Please check back later. All rewards will accumulate as usual during this time.
+                    </Trans>
+                  </Typography>
+                }
               >
-                <Trans>Claim</Trans>
-              </Button>
+                <Button
+                  size="small"
+                  disabled={true}
+                  // onClick={() => openClaimRewards()}
+                  sx={{
+                    minWidth: 'unset',
+                    bgcolor: '#3AB0FF',
+                    color: 'white',
+                    ml: { xs: 0, xsm: 2 },
+                  }}
+                  data-cy={'Dashboard_Claim_Button'}
+                >
+                  <Trans>Claim</Trans>
+                </Button>
+              </ContentWithTooltip>
+              
               {connected && (
                 <AddTokenDropdown
                   addRewardTokens={addRewardTokens}

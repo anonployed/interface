@@ -1648,6 +1648,10 @@ msgstr "Reward(s) to claim"
 msgid "Rewards APR"
 msgstr "Rewards APR"
 
+#: src/modules/dashboard/DashboardTopPanel.tsx
+msgid "Rewards claim is undergoing maintenance and upgrades. Please check back later. All rewards will accumulate as usual during this time."
+msgstr "Rewards claim is undergoing maintenance and upgrades. Please check back later. All rewards will accumulate as usual during this time."
+
 #: src/components/HealthFactorNumber.tsx
 msgid "Risk details"
 msgstr "Risk details"

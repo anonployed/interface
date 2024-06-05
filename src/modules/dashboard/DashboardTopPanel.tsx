@@ -5,10 +5,10 @@ import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material'
 import Link from 'next/link';
 import * as React from 'react';
 import { useState } from 'react';
+import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
 import { NetAPYTooltip } from 'src/components/infoTooltips/NetAPYTooltip';
 import { getMarketInfoById } from 'src/components/MarketSwitcher';
 import { ROUTES } from 'src/components/primitives/Link';
-import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
 import { PageTitle } from 'src/components/TopInfoPanel/PageTitle';
 // import { useModalContext } from 'src/hooks/useModal';
 import { useProtocolDataContext } from 'src/hooks/useProtocolDataContext';
@@ -244,7 +244,9 @@ export const DashboardTopPanel = () => {
                 tooltipContent={
                   <Typography variant="caption" color="text.secondary" mb={3}>
                     <Trans>
-                      Rewards claim is undergoing maintenance and upgrades. Please check back later. All rewards will accumulate as usual during this time.
+                      Rewards claim upgrades have passed governance, which started the 48 hour
+                      timelock phase. Please check back after the timelock completes. All rewards
+                      will accumulate as usual during this time.
                     </Trans>
                   </Typography>
                 }
@@ -264,7 +266,7 @@ export const DashboardTopPanel = () => {
                   <Trans>Claim</Trans>
                 </Button>
               </ContentWithTooltip>
-              
+
               {connected && (
                 <AddTokenDropdown
                   addRewardTokens={addRewardTokens}
